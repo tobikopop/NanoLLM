@@ -1,0 +1,200 @@
+{
+  "version": "24.8",
+  "globals": {
+    "GraphEditor": {
+      "layout_grid": {
+        "x": 0,
+        "y": 0,
+        "w": 8,
+        "h": 10
+      }
+    },
+    "TextStream": {
+      "layout_grid": {
+        "x": 8,
+        "y": 0,
+        "w": 4,
+        "h": 6
+      }
+    }
+  },
+  "plugins": [
+    {
+      "name": "RateLimit",
+      "type": "RateLimit",
+      "connections": [
+        {
+          "to": "AutoPrompt",
+          "input": 0,
+          "output": 0
+        }
+      ],
+      "layout_grid": {},
+      "layout_node": {
+        "x": 84,
+        "y": 104
+      },
+      "rate": 1,
+      "chunk": null,
+      "drop_inputs": true,
+      "on_demand": false,
+      "init_kwargs": {
+        "rate": 1.0,
+        "drop_inputs": true,
+        "on_demand": false,
+        "name": "RateLimit"
+      }
+    },
+    {
+      "name": "AutoPrompt",
+      "type": "AutoPrompt",
+      "connections": [
+        {
+          "to": "NanoLLM",
+          "input": 0,
+          "output": 0
+        }
+      ],
+      "layout_grid": {},
+      "layout_node": {
+        "x": 86,
+        "y": 218
+      },
+      "template": "<reset><image>Describe the persons facial expression concisely. If you cannot see them just say person, if no person say none.",
+      "init_kwargs": {
+        "template": "<reset><image> If a person is present in the image, return 'Person detected'. Otherwise, return 'No person'.",
+        "name": "AutoPrompt"
+      }
+    },
+    {
+      "name": "NanoLLM",
+      "type": "NanoLLM",
+      "connections": [
+        {
+          "to": "EventFilter",
+          "input": 0,
+          "output": 2
+        },
+        {
+          "to": "EventFilter_1",
+          "input": 0,
+          "output": 2
+        },
+        {
+          "to": "WebClient",
+          "input": 0,
+          "output": 4
+        }
+      ],
+      "layout_grid": {
+        "x": 8,
+        "y": 6,
+        "w": 4,
+        "h": 10
+      },
+      "layout_node": {
+        "x": 307,
+        "y": 42
+      },
+      "max_new_tokens": 6,
+      "min_new_tokens": 0,
+      "do_sample": false,
+      "temperature": 0.1,
+      "top_p": 0.9,
+      "repetition_penalty": 1.2,
+      "drop_inputs": true,
+      "system_prompt": "Response follows:\n<tool_call>\n{\"arguments\": <args-dict>, \"name\": <function-name>}\n</tool_call>\nOnly call functions when necessary, and don't make assumptions about what values to plug into function arguments.\nOnce you have called a function, results will be fed back to you within\n<tool_response></tool_response> XML tags.\nAnalyze the latest results, and perform the actions as requested by the user.",
+      "model": "Efficient-Large-Model/VILA1.5-3b",
+      "init_kwargs": {
+        "model": "Efficient-Large-Model/VILA1.5-3b",
+        "api": "MLC",
+        "quantization": "q4f16_ft",
+        "drop_inputs": true,
+        "chat_template": "auto",
+        "name": "NanoLLM"
+      }
+    },
+    {
+      "name": "EventFilter",
+      "type": "EventFilter",
+      "connections": [
+        {
+          "to": "EventWebSocket",
+          "input": 0,
+          "output": 1
+        }
+      ],
+      "layout_grid": {},
+      "layout_node": {
+        "x": 491,
+        "y": -12
+      },
+      "tags": "Person",
+      "filters": "person,man,woman,child,girl,boy",
+      "init_kwargs": {
+        "filters": "person,man,woman,child,girl,boy",
+        "tags": "Person",
+        "name": "EventFilter"
+      }
+    },
+    {
+      "name": "VideoSource_1",
+      "type": "VideoSource",
+      "connections": [
+        {
+          "to": "RateLimit",
+          "input": 0,
+          "output": 0
+        }
+      ],
+      "layout_grid": {},
+      "layout_node": {
+        "x": 20,
+        "y": 13
+      },
+      "init_kwargs": {
+        "video_input": "/dev/video6",
+        "video_input_width": 320,
+        "video_input_height": 240,
+        "video_input_framerate": 10,
+        "return_copy": true,
+        "return_tensors": "cuda",
+        "name": "VideoSource"
+      }
+    },
+    {
+      "name": "EventWebSocket",
+      "type": "EventWebSocket",
+      "connections": [],
+      "layout_grid": {},
+      "layout_node": {
+        "x": 706,
+        "y": 100
+      },
+      "init_kwargs": {}
+    },
+    {
+      "name": "EventFilter_1",
+      "type": "EventFilter",
+      "connections": [
+        {
+          "to": "EventWebSocket",
+          "input": 0,
+          "output": 1
+        }
+      ],
+      "layout_grid": {},
+      "layout_node": {
+        "x": 498,
+        "y": 105
+      },
+      "tags": "none",
+      "filters": "0,room",
+      "init_kwargs": {
+        "filters": "none",
+        "tags": "0",
+        "name": "EventFilter"
+      }
+    }
+  ]
+}
