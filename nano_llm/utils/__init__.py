@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# from nanodb.utils import *
+from nanodb.utils import *
 
 from .args import *
 from .audio import *
