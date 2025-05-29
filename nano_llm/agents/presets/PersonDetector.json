@@ -62,7 +62,7 @@
       },
       "template": "<reset><image>Describe the persons facial expression concisely. If you cannot see them just say person, if no person say none.",
       "init_kwargs": {
-        "template": "<reset><image> If a person is present in the image, return 'Person detected'. Otherwise, return 'No person'.",
+        "template": "<reset><image>Describe the persons facial expression concisely. If you cannot see them just say person, if no person say none.",
         "name": "AutoPrompt"
       }
     },
@@ -103,7 +103,7 @@
       "top_p": 0.9,
       "repetition_penalty": 1.2,
       "drop_inputs": true,
-      "system_prompt": "Response follows:\n<tool_call>\n{\"arguments\": <args-dict>, \"name\": <function-name>}\n</tool_call>\nOnly call functions when necessary, and don't make assumptions about what values to plug into function arguments.\nOnce you have called a function, results will be fed back to you within\n<tool_response></tool_response> XML tags.\nAnalyze the latest results, and perform the actions as requested by the user.",
+      "system_prompt": "Analyze the latest image, and perform the actions as requested by the user.",
       "model": "Efficient-Large-Model/VILA1.5-3b",
       "init_kwargs": {
         "model": "Efficient-Large-Model/VILA1.5-3b",
@@ -129,11 +129,11 @@
         "x": 491,
         "y": -12
       },
-      "tags": "Person",
+      "tags": "comeback",
       "filters": "person,man,woman,child,girl,boy",
       "init_kwargs": {
         "filters": "person,man,woman,child,girl,boy",
-        "tags": "Person",
+        "tags": "comeback",
         "name": "EventFilter"
       }
     },
@@ -188,10 +188,10 @@
         "x": 498,
         "y": 105
       },
-      "tags": "none",
-      "filters": "0,room",
+      "tags": "swim",
+      "filters": "0,room,none",
       "init_kwargs": {
-        "filters": "none",
+        "filters": "swim",
         "tags": "0",
         "name": "EventFilter"
       }
