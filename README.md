@@ -1,8 +1,9 @@
 # Fish Vision AI
 <a href="https://www.jetson-ai-lab.com"><img align="right" width="200" height="200" src="https://nvidia-ai-iot.github.io/jetson-generative-ai-playground/images/JON_Gen-AI-panels.png"></a>
 
+Optimized for Jetson Orin NX <br />
 Custom build of Agent Studio (NanoLLM) for running video languange model (VILA1.5-3b) to connect to Unreal 5.5 to bring characters to life by letting them see you.
-Optimized for Jetson Orin NX
+
 
 
 NanoLLM container:
