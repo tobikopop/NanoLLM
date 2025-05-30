@@ -106,6 +106,11 @@ class DynamicPlugin(Plugin):
         
         from nano_llm.plugins.robotics import MimicGen, RobotDataset, ROS2Connector
         
+        # Custom websocket plugin
+        from nano_llm.plugins.event_websocket import EventWebSocket
+        DynamicPlugin.register(EventWebSocket)
+
+        
         # LLM
         DynamicPlugin.register(NanoLLM)  
         DynamicPlugin.register(NanoVLA)  
