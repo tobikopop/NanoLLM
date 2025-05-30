@@ -191,8 +191,8 @@
       "tags": "swim",
       "filters": "0,room,none",
       "init_kwargs": {
-        "filters": "swim",
-        "tags": "0",
+        "filters": "0,room,none",
+        "tags": "swim",
         "name": "EventFilter"
       }
     }
