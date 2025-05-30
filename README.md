@@ -7,3 +7,4 @@ Custom build of Agent Studio (NanoLLM) for running video languange model (VILA1.
 NanoLLM container:
 Latest Release: 36.4.0 ([`dustynv/nano_llm:r36.4.0`](https://hub.docker.com/r/dustynv/nano_llm/tags)) <br/> 
 
+![Screenshot 2025-05-19 161548](https://github.com/user-attachments/assets/1056544c-dc15-4119-bbe1-cced329a2b54)
